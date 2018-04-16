@@ -33,6 +33,11 @@ cc_import(
   shared_library = "//tensorflow:libtensorflow.so",
 )
 
+cc_import(
+  name = "libtensorflow_framework.so",
+  shared_library = "//tensorflow:libtensorflow_framework.so",
+)
+
 go_library(
     name = "go_default_library",
     srcs = [
@@ -49,6 +54,7 @@ go_library(
         "//tensorflow/c:headers",  # C library header
     ],
     cdeps = [
+      ":libtensorflow_framework.so",
       ":libtensorflow.so",  # C library
     ],
     cgo = True,
